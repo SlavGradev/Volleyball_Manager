@@ -1,8 +1,11 @@
 #include <iostream>
+#include "Match.h"
 
 using namespace std;
 
 int main() {
-    cout << "Hello, World!" << endl;
+    Match* match = new Match();
+    match->play();
+    match->printResult();
     return 0;
 }
