@@ -7,6 +7,7 @@ class Player {
 private:
     int skills;
 public:
+    Player(){};
     Player(int skills) : skills(skills) { }
 
     int getSkills() const;

@@ -1,6 +1,11 @@
 #include <iostream>
 #include "Match.h"
 
+
+Match::Match(): a(), aGames(), b(), bGames(), result(result),ateam(),bteam() {
+
+}
+
 bool Match::gameEnded(int a, int a_games, int b, int b_games){
     if(a_games + b_games < 4) {
         if (a < 25 && b < 25)
@@ -15,10 +20,10 @@ bool Match::gameEnded(int a, int a_games, int b, int b_games){
     }
 }
 void Match::play() {
-    srand(time(NULL));
+
     while(aGames < 3 && bGames <3){
         while(!gameEnded(a, aGames, b, bGames)){
-            if(rand() % 2 == 1)
+            if(whoWinsPoint(ateam, bteam))
                 a += 1;
             else
                 b += 1;
@@ -36,5 +41,17 @@ void Match::printResult() {
     for (int i = 0; i < result.size(); ++i) {
         std::cout<<result[i][0]<<" "<<result[i][1]<<std::endl;
     }
-    std::cout<<aGames<<" "<<bGames;
+    std::cout<<aGames<<" "<<bGames<<std::endl;
+    double sum = ateam.getSkill() + bteam.getSkill();
+    std::cout<<"aSkill-"<<ateam.getSkill()/sum<<":bSkill-"<<bteam.getSkill()/sum;
 }
+
+bool Match::whoWinsPoint(Team ateam, Team bteam) {
+    double sum = ateam.getSkill() + bteam.getSkill();
+    if((rand() % (int)sum) < ateam.getSkill()){
+        return true;
+    }else{
+        return false;
+    }
+}
+

@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <array>
+#include "Team.h"
 
 class Match {
 private:
@@ -11,14 +12,19 @@ private:
     int aGames;
     int b;
     int bGames;
+    Player* players;
+    Team ateam;
+    Team bteam;
+
     std::vector<std::array<int, 2>> result;
     bool gameEnded(int a, int aGames, int b, int bGames);
 public:
-
-    Match() : a(), aGames(), b(), bGames(), result(result) { }
+    Match();
 
     void play();
     void printResult();
+
+    bool whoWinsPoint(Team ateam, Team bteam);
 };
 
 
